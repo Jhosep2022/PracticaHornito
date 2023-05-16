@@ -1,0 +1,281 @@
+html {
+  font-family: Arial, Helvetica, sans-serif; 
+  display: inline-block; 
+  text-align: center;
+}
+h1 {
+  font-size: 1.8rem; 
+  color: white;
+}
+p { 
+  font-size: 1.4rem;
+}
+.topnav { 
+  overflow: hidden; 
+  background-color: #0A1128;
+}
+body {  
+  margin: 0;
+}
+.content { 
+  padding: 5%;
+}
+.card-grid { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  display: grid; 
+  grid-gap: 2rem; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.card { 
+  background-color: white; 
+  box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+}
+.card-title { 
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #034078
+}
+
+
+body {
+  background-image: linear-gradient(to top, #f6ebf4, #a577ff);
+	margin: 0;
+	padding: 0;
+}
+/*Cabecera*/
+header {
+	background-image: conic-gradient(#f6ebf4, #6525e6);
+	color: #fff;
+	padding: 0px;
+  height: 95px;
+}
+.logo {
+    margin-top: 0px;
+    margin-left: 165px;
+    width: 50%;
+    height: 95%;
+    display: inline-block;
+}
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+
+
+#pie-de-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 20px;
+    margin-top: 90px;
+    background-image: linear-gradient(to top, #f6ebf4, #333399);
+  }
+  
+  #pie-de-pagina img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 50px;
+  }
+  .textopie{
+    color: black;
+    font-size: 15px;
+    font-weight: 100;
+    font-family: 'Franklin Gothic Medium';
+  }
+
+/* las tres columnas */
+*{
+    list-style: none;
+    margin:0;
+    padding: 0;
+  }
+    ul {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0px;
+    }
+    ul li {
+      width: calc(33%);
+      height: 50px;
+      margin:15px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /*agregar cuando quieras el cambio en el responsive*/
+/*Caja*/
+.cajas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.caja{
+    width: 22%;
+    height: 100%;
+    margin: 5px;
+    background-image: radial-gradient(#8f4ecf, #333399);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px; 
+}
+
+.logoimge{
+    width: 100px;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 50px;
+}
+
+.soldutitulo{
+    color: white;
+    font-size: 50px;
+    margin-top: 10px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    font-family: "Arial";
+}
+
+
+  /*Cuadro fecha hora y clima*/
+
+  #clock {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+  
+  #date {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  #time {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  #temperature {
+    display: block;
+    
+  }
+
+ 
+
+
+
+  /*estilo a mi tabla*/
+  .tabla{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px; 
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+  
+
+  }
+
+  table {
+    border-collapse: collapse; /* colapsa los bordes de las celdas */
+    width: 100%; /* 100% de ancho para que la tabla ocupe todo el espacio disponible */
+    margin-bottom: 20px; /* espacio inferior de 20px para separar la tabla de otros elementos */
+  }
+  
+  /* Estilo para las celdas de encabezado (th) */
+  th {
+    background-color: #8a56f9; /* color de fondo gris claro */
+    border: 1px solid #8fa5ff; /* borde de 1px sólido de color gris claro */
+    padding: 8px; /* espacio interno de 8px */
+    text-align: left; /* alinear texto a la izquierda */
+    font-size: 16px; /* tamaño de fuente de 16px */
+  }
+  
+  /* Estilo para las celdas de datos (td) */
+  td {
+    border: 1px solid #6174ef; /* borde de 1px sólido de color gris claro */
+    padding: 8px; /* espacio interno de 8px */
+    font-size: 14px; /* tamaño de fuente de 14px */
+  }
+  
+  /* Estilo para las filas impares */
+  tr:nth-child(odd) {
+    background-color: #bc96f1; /* color de fondo gris claro para filas impares */
+  }
+  
+  /* Estilo para las filas pares */
+  tr:nth-child(even) {
+    background-color: #fff; /* color de fondo blanco para filas pares */
+  }
+
+
+  
+  /*Formato Main*/
+
+  h1 {
+    color: #0F3376;
+    padding: 2vh;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  .button {
+    display: inline-block;
+    background-color: #008CBA;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 16px 40px;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 2px;
+    cursor: pointer;
+  }
+  .button2 {
+    background-color: #f44336;
+  }
+  .units {
+    font-size: 1.2rem;
+   }
+  .sensor-labels {
+    font-size: 1.5rem;
+    vertical-align:middle;
+    padding-bottom: 15px;
+  }
+  
+
+
+
+  

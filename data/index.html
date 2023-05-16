@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <style>
+          .ampliacion:hover{
+              transform: scale(1.1);
+          }
+          .changecolor:hover{
+              background-color:#298095;
+              color: white;
+              border: solid 3px #164275;
+          }
+  </style>   
+  <head>
+    <title>ESP32 IOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
+  
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <style>
+    body {
+      min-width: 310px;
+    	max-width: 800px;
+    	height: 400px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-family: Arial;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  </style>
+  
+  </head>
+  <body href="/pagina">
+    <header>
+      <img class="logo"src="https://www.ucb.edu.bo/wp-content/uploads/2020/08/colores-horizontal-NAC.png">
+    </header>
+
+    <div class="cajas">
+      <div class="caja">
+          <img class="logoimge" src="logoem.png">
+          Logo de la Empresa
+      </div>
+      <div class="caja">
+          <h1 class ="soldutitulo">soldu</h1>
+      </div>
+      <div class="caja">
+          <div id="clock">
+              <span id="date"></span>
+              <span id="time"></span>
+              <span id="temperature"></span>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            
+          Date, Time y Clima
+      </div>
+      <div class="caja">
+          <img class="logoimge" src= "wifi.png">
+          Nivel RSSI
+      </div>
+  </div>
+   <br>
+
+  <main>
+    
+    
+  </div>
+  <script src="script.js"></script>   
+  <div class="content">
+    <div class="card-grid"> 
+      <div class="card">
+        <p class="card-title">Dato1</p>
+        <canvas id="gauge-temperature"></canvas>
+      </div>
+      <div class="card">
+        <p class="card-title">Dato2</p>
+        <canvas id="gauge-humidity"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+<div id="chart-ADC" class="container"></div>
+
+      </div>
+  </div>
+
+  <div class="container-fluid"><hr size="2px" color="black" /></div>
+
+  <div class="container">
+      <div class="column">
+</main>
+<p>Estado  :<strong> %ESTADO%</strong></p>
+            <p>
+            <a href="/oncl"><button class="button">ON</button></a>
+            <a href="/offcl"><button class="button button2">OFF</button></a>
+            </p>
+ 
+</center>
+</main>
+<footer >
+
+  <div id="pie-de-pagina">
+    <img src="FotoPerfil.png">
+    <div class="textopie">
+      <p>Desarrollador: Jose Amadeo Condori Ramos</p>
+      <p>Email: jose.condori.r@ucb.edu.bo</p>
+      <p>Cell: 74080986</p>
+      <p>Empresa: Soldu</p>
+    </div>
+    
+  </div>
+
+</footer>
+  </body>
+  
+
+</html>
+
+<script>
+  function actualizarHora() {
+    var fecha = new Date();
+    var hora = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    var segundos = fecha.getSeconds();
+    document.getElementById("hora").innerHTML = hora + ":" + minutos + ":" + segundos;
+  }
+  setInterval(actualizarHora, 1000);
+
+  function actualizarFecha() {
+    var fecha = new Date();
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var anio = fecha.getFullYear();
+    document.getElementById("fecha").innerHTML = dia + "/" + mes + "/" + anio;
+  }
+  setInterval(actualizarFecha, 1000);
+ 
+  
+var chartADC = new Highcharts.Chart({
+chart:{ renderTo:'chart-ADC' },
+title: { text: 'ADC' },
+series: [{
+  showInLegend: false,
+  data: []
+}],
+plotOptions: {
+  line: { animation: false,
+    dataLabels: { enabled: true }
+  },
+  series: { color: '#18009c' }
+},
+xAxis: {
+  type: 'datetime',
+  dateTimeLabelFormats: { second:'%S' }
+},
+yAxis: {
+  title: { text: 'Datos del ADC A0' }
+},
+credits: { enabled: false }
+});
+setInterval(function ( ) {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var x = (new Date()).getTime(),
+        y = parseFloat(this.responseText);
+    //console.log(this.responseText);
+    if(chartADC.series[0].data.length > 40) {
+      chartADC.series[0].addPoint([x, y], true, true, true);
+    } else {
+      chartADC.series[0].addPoint([x, y], true, false, true);
+    }
+  }
+};
+xhttp.open("GET", "/ADC", true);
+xhttp.send();
+}, 1000 ) ;
+
+
+  </script>
