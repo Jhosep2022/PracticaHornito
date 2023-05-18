@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animGato.css">
+  <script src="animDino.css"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
+
+</head>
+
+<body>
+  <!-- Inicio NavBar -->
+  <nav class="navbar bg-primary" data-bs-theme="dark" >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img
+        src="https://i.ibb.co/YLmhgRm/logoemp.png"
+        width="200"
+        height="74"
+      /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="modoa.html">Modo A</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="modob.html
+            ">Modo B</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="modoc.html
+            ">Modo C</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="modod.html
+            ">Modo D</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="modoe.html
+            ">Modo E</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="modof.html
+            ">Modo F</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Fin NavBar -->
+  </head>
+
+  <body>
+    <!--Plantilla-->
+    <header>
+      <img class="LogoUCB" src="https://i.ibb.co/c1JZzSm/logouni.png" alt="Logo" width="600" height="120">
+    </header>
+    <!--Fin Plantilla-->
+
+
+    <center>
+      <br>
+      <h1>Modo C</h1>
+      <br>
+
+      <div class="grid-container3">
+        <div class="grid-item">
+          <form action="/START_C" method="post">
+            <button class="boton" type="submit" value="Submit">Iniciar</button>
+          </form>
+        </div>
+        <div class="grid-item">
+          <form action="/STOP_C" method="post">
+            <button class="boton" type="submit" value="Submit">Stop</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form action="/SLIDER_B" method="post">
+            Slider:<br />
+            <br /><br />
+            <input
+              type="range"
+              id="pwm_c"
+              name="pwm_c"
+              min="0"
+              max="1023"
+              onchange="updateTextInput(this.id, this.value);"
+            />
+            <input
+              type="number"
+              id="text_c"
+              value="1023"
+              min="0"
+              max="1023"
+              onchange="updateTextInput(this.id, this.value);"
+              style="width: 50px"
+            />
+            <br>
+            <br />
+            <button type="submit" value="Submit" class="boton">Enviar</button>
+          </form>
+        </div>
+
+        <div class="col">
+          <div id="chart-Horno" class="container"></div><br>
+          <div id="chart-Venti" class="container"></div><br>
+          <div id="chart-Venti2" class="container"></div>
+        </div>
+
+      </div>
+
+      
+
+
+    </center>
+
+    <script>
+      const input = document.querySelector("input");
+      const label = document.querySelector("label");
+
+      input.addEventListener("input", (event) => {
+        const value = Number(input.value) / 100;
+        input.style.setProperty("--thumb-rotate", `${value * 720}deg`);
+        label.innerHTML = Math.round(value * 50);
+      });
+
+      function updateTextInput(id, value) {
+        if (id === "pwm_c") {
+          document.getElementById("text_c").value = value;
+        } else if (id === "text_c") {
+          document.getElementById("pwm_b").value = value;
+        }
+      }
+
+
+      /* Grafica de Horno */
+      var chartHorno =  new Highcharts.Chart({
+        chart:{ renderTo: "chart-Horno" },
+        title: { text: "Horno en tiempo real" },
+        series: [{
+          showInLegend: false,
+          data: []
+        }],
+        plotOptions: {
+          line: { animation: false,
+            dataLabels: { enabled: true }
+          },
+          series: { color: "#059e8a" }
+        },
+        xAxis: { type: "datetime",
+          dateTimeLabelFormats: { second: "%H:%M:%S" }
+        },
+        yAxis: {
+          title: { Text: "Datos de la Temperatura" }
+        },
+        credits: { enabled: false }
+      });
+
+      setInterval(function(){
+        var xhttp = new XMLHttpRequest();
+        var temp = this.responseText;
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var x = (new Date()).getTime(),
+            y = temp;
+            if(chartHorno.series[0].data.length > 0) {
+              chartHorno.series[0].addPoint([x, y], true, true, true);
+            } else {
+              chartHorno.series[0].addPoint([x, y], true, false, true);
+            }
+          }
+        };
+        xhttp.open("GET", "temp", true);
+        xhttp.send();
+      },1000);
+
+      /* Grafica de Ventilador1 */
+       
+      var chartVenti =  new Highcharts.Chart({
+        chart:{ renderTo: "chart-Venti" },
+        title: { text: "Ventilador 1 en tiempo real" },
+        series: [{
+          showInLegend: false,
+          data: []
+        }],
+        plotOptions: {
+          line: { animation: false,
+            dataLabels: { enabled: true }
+          },
+          series: { color: "#059e8a" }
+        },
+        xAxis: { type: "datetime",
+          dateTimeLabelFormats: { second: "%H:%M:%S" }
+        },
+        yAxis: {
+          title: { Text: "Datos de la Temperatura" }
+        },
+        credits: { enabled: false }
+      });
+      setInterval(function(){
+        var xhttp = new XMLHttpRequest();
+        var temp = this.responseText;
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var x = (new Date()).getTime(),
+            y = temp;
+            if(chartVenti.series[0].data.length > 0) {
+              chartVenti.series[0].addPoint([x, y], true, true, true);
+            } else {
+              chartVenti.series[0].addPoint([x, y], true, false, true);
+            }
+          }
+        };
+        xhttp.open("GET", "temp", true);
+        xhttp.send();
+      },1000);
+
+      /* Grafica de Ventilador2 */
+      
+      var chartVenti2 =  new Highcharts.Chart({
+        chart:{ renderTo: "chart-Venti2" },
+        title: { text: "Ventilador 2 en tiempo real" },
+        series: [{
+          showInLegend: false,
+          data: []
+        }],
+        plotOptions: {
+          line: { animation: false,
+            dataLabels: { enabled: true }
+          },
+          series: { color: "#059e8a" }
+        },
+        xAxis: { type: "datetime",
+          dateTimeLabelFormats: { second: "%H:%M:%S" }
+        },
+        yAxis: {
+          title: { Text: "Datos de la Temperatura" }
+        },
+        credits: { enabled: false }
+      });
+
+
+      input.addEventListener("input", event => {
+        const value = Number(input.value) / 100;
+        input.style.setProperty("--thumb-rotate", `${value * 720}deg`);
+        label.innerHTML = Math.round(value * 50);
+      });
+      //
+      function updateTextInput(val) {
+        document.getElementById('textInput').value = val;
+        document.getElementById('pwmInput').value = val;
+      }
+
+      
+    </script>
+  </body>
+
+</html>
