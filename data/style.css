@@ -255,6 +255,8 @@ button {
   margin-left: 10px;
 }
 
+
+
 button:hover {
   background-color: #0056b3;
 }
@@ -263,6 +265,58 @@ button:hover {
   display: none;
 }
 
+
+.botonV{
+  /*boton encendido*/
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin: 30px ; 
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50; /* Color de fondo cuando el botón está encendido */
+  color: white; /* Color de la fuente cuando el botón está encendido */
+  border: none;
+  border-radius: 50px; /* Esto hace que el botón sea redondo */
+  box-shadow: 0 5px #999; /* Sombra debajo del botón */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+
+}
+
+.botonV:hover {
+  background-color: #45a049;
+}
+
+.botonV:active {
+  background-color: #3e8e41; /* Color de fondo cuando se hace clic en el botón */
+  box-shadow: 0 5px #666; /* Sombra debajo del botón cuando se hace clic en él */
+  transform: translateY(4px);
+}
+
+.botonR{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin: 30px ;
+  text-align: center;
+  text-decoration: none;
+  background-color: #A9A9A9; /* Color de fondo cuando el botón está apagado */
+  color: white; /* Color de la fuente cuando el botón está apagado */
+  border: none;
+  border-radius: 50px; /* Esto hace que el botón sea redondo */
+  box-shadow: 0 5px #999; /* Sombra debajo del botón */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s; 
+}
+
+.botonR:hover {
+  background-color: #696969;
+}
+
+.botonR:active {
+  background-color: #808080; /* Color de fondo cuando se hace clic en el botón */
+  box-shadow: 0 5px #666; /* Sombra debajo del botón cuando se hace clic en él */
+  transform: translateY(4px);
+}
 
 
 /*
